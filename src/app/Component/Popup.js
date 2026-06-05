@@ -1,5 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react'
+import { toast } from 'react-toastify';
 
 
 export default function Popup({ setPopUp, selectedtask, list, setList }) {
@@ -16,7 +17,7 @@ export default function Popup({ setPopUp, selectedtask, list, setList }) {
     // edit task
     const edittask = () => {
         if (!updatetask.trim()) {
-            alert("Task cannot be empty");
+            toast.warn("Task cannot be empty");
             return;
         }
         const updatelist = list.map((item) => item.id === selectedtask.id ? { ...item, task: updatetask } : item)
@@ -25,7 +26,7 @@ export default function Popup({ setPopUp, selectedtask, list, setList }) {
 
         localStorage.setItem("todo", JSON.stringify(updatelist))
 
-        alert("update sucessfull")
+        toast.success("Updated Successfully")
         setPopUp(false)
 
 

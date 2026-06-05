@@ -3,6 +3,7 @@ import { Fascinate } from 'next/font/google';
 import React, { useState, useEffect } from 'react'
 import { IoDocumentTextOutline } from 'react-icons/io5'
 import { RiEditCircleLine } from "react-icons/ri";
+import { toast } from 'react-toastify';
 import Popup from './Popup';
 
 
@@ -24,7 +25,7 @@ export default function Add() {
     // add new task
     const addlist = () => {
         if (task === '') {
-            alert("Please enter task")
+            toast.warn("Please enter task")
         }
         else {
             const newtask = {
@@ -36,7 +37,7 @@ export default function Add() {
             localStorage.setItem("todo", JSON.stringify(updatelist))
             setTask("");
 
-            alert("Added successfully");
+            toast.success("Added Successfully");
 
 
         }
@@ -45,7 +46,7 @@ export default function Add() {
     const deletetask = (id) => {
         const updatelist = list.filter((item) => item.id !== id)
         setList(updatelist)
-        alert("delete success")
+        toast.success("Deleted Successfully")
         localStorage.setItem("todo", JSON.stringify(updatelist))
 
 
@@ -55,6 +56,7 @@ export default function Add() {
     // delete all task
     const clearall = () => {
         localStorage.removeItem("todo")
+        toast.success("Clear all task sucessfully")
         setList([])
     }
     return (
